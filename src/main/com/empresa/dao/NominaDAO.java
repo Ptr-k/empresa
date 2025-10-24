@@ -1,6 +1,8 @@
 package com.empresa.dao;
 
 import com.empresa.conexion.Conexion;
+import com.empresa.exception.DatosNoCorrectosException;
+import com.empresa.model.Empleado;
 import com.empresa.model.Nomina;
 
 import java.sql.Connection;
@@ -20,24 +22,35 @@ public class NominaDAO {
         return Conexion.getConnection();
     }
 
-    // Obtener todas las nóminas de los empleados
-    public List<Nomina> obtenerNominas() throws SQLException {
+    // Obtener nomina mediante un DNI.
+    public List<Nomina> obtenerNomina(String dni) throws SQLException {
         ResultSet resultado = null;
         List<Nomina> nominas = new ArrayList<>();
-        String sql = "SELECT * FROM nominas";
-        String sqlEmpld = "SELECT * from ";
+        String sql = "SELECT * from empleados WHERE dni=? ";
 
         connection = obtenerConexion();
 
         try {
             statement = connection.prepareStatement(sql);
+            statement.setString(1, dni);
             resultado = statement.executeQuery();
-            while (resultado.next()) {
+
+            if(resultado.next()) {
+                Empleado emp = new Empleado();
+                emp.setDni(resultado.getString("dni"));
+                emp.setNombre(resultado.getString("nombre"));
+                emp.setSexo(resultado.getString("sexo").charAt(0));
+                emp.setAnyos(resultado.getInt("anyos"));
+                emp.setCategoria(resultado.getInt("categoria"));
+
                 Nomina nom = new Nomina();
+                int sueldo = nom.sueldo(emp);
+                nominas.add(nom);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | DatosNoCorrectosException e) {
             throw new RuntimeException(e);
         }
+
         return nominas;
     }
 }

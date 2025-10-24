@@ -23,6 +23,17 @@
             padding: 10px;
             margin: 10px;
         }
+
+        button {
+            background-color: white;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 16px;
+            margin: 10px 0px;
+            display: block;
+            align-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 </head>
@@ -47,6 +58,9 @@
         </tr>
     </c:forEach>
 </table>
+    <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/index.jsp'">
+        Volver al Inicio
+    </button>
 </div>
 </body>
 </html>
