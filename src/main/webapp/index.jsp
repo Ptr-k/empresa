@@ -11,28 +11,39 @@
             font-family: Arial;
             margin: auto;
             text-align: center;
+            background-color: #343434;
         }
         div {
+            border-radius: 10px;
+            box-shadow: black 10px 10px 10px;
+            padding: 15px;
+            margin: 10%;
             display: inline-block;
             vertical-align: middle;
             text-align: justify;
+            background-color: #232323;
+            color: white;
+            text-decoration: none;
+        }
+        table td a:visited {
+            color: white;
+            text-decoration: none;
         }
         table td {
-            border: 1px solid black;
             padding: 10px;
             margin: 10px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 <div>
-    <h1>MENÚ DE EMPLEADOS</h1>
     <table>
         <tr>
             <td><a href="empleados?accion=listarEmpleados">Consultar empleados</a></td>
         </tr>
         <tr>
-            <td><a href="empleados?accion=listarSalarios">Mostrar salario de empleados</a></td>
+            <td><a href="nominas?accion=listarSalarios">Mostrar salario de empleados</a></td>
         </tr>
         <tr>
             <td><a href="empleados?accion=modificar">Modificar datos de un empleado existente</a></td>
