@@ -10,12 +10,19 @@
             font-family: Arial;
             margin: auto;
             text-align: center;
+            background-color: #343434;
         }
-
         div {
+            border-radius: 10px;
+            box-shadow: black 10px 10px 10px;
+            padding: 15px;
+            margin: 10%;
             display: inline-block;
             vertical-align: middle;
             text-align: justify;
+            background-color: #232323;
+            color: white;
+            text-decoration: none;
         }
 
         table td {
@@ -25,6 +32,7 @@
         }
 
         button {
+            border-radius: 10px;
             background-color: white;
             padding: 10px 15px;
             text-align: center;

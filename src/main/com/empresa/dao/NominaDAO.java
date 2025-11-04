@@ -23,9 +23,9 @@ public class NominaDAO {
     }
 
     // Obtener nomina mediante un DNI.
-    public List<Nomina> obtenerNomina(String dni) throws SQLException {
+    public List<Object[]> obtenerNomina(String dni) throws SQLException {
         ResultSet resultado = null;
-        List<Nomina> nominas = new ArrayList<>();
+        List<Object[]> nominas = new ArrayList<>();
         String sql = "SELECT * from empleados WHERE dni=? ";
 
         connection = obtenerConexion();
@@ -35,7 +35,7 @@ public class NominaDAO {
             statement.setString(1, dni);
             resultado = statement.executeQuery();
 
-            if(resultado.next()) {
+            if (resultado.next()) {
                 Empleado emp = new Empleado();
                 emp.setDni(resultado.getString("dni"));
                 emp.setNombre(resultado.getString("nombre"));
@@ -45,7 +45,9 @@ public class NominaDAO {
 
                 Nomina nom = new Nomina();
                 int sueldo = nom.sueldo(emp);
-                nominas.add(nom);
+
+                // Guardamos tanto el empleado como el salario
+                nominas.add(new Object[]{emp, sueldo});
             }
         } catch (SQLException | DatosNoCorrectosException e) {
             throw new RuntimeException(e);
