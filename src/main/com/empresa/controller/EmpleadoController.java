@@ -49,6 +49,29 @@ public class EmpleadoController extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
+        } else if (accion.equals("modificar")) {
+            // Mostrar formulario de búsqueda/modificación
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/modificar.jsp");
+            requestDispatcher.forward(request, response);
+
+        } else if (accion.equals("buscarEmpleado")) {
+            // Buscar empleado por DNI para mostrar en el formulario
+            String dni = request.getParameter("dni");
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+
+            try {
+                Empleado empleado = empleadoDAO.buscarEmpleado(dni);
+
+                if (empleado != null && empleado.getDni() != null && !empleado.getDni().isEmpty()) {
+                    request.setAttribute("empleado", empleado);
+                }
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/modificar.jsp");
+                requestDispatcher.forward(request, response);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -72,11 +95,20 @@ public class EmpleadoController extends HttpServlet {
                 empleado.setAnyos(Integer.parseInt(request.getParameter("anyos")));
                 empleado.setSexo(request.getParameter("sexo").charAt(0));
 
-                empleadoDAO.editar(empleado);
+                boolean actualizado = empleadoDAO.editar(empleado);
+
+                if (actualizado) {
+                    request.setAttribute("mensaje", "Empleado actualizado correctamente");
+                } else {
+                    request.setAttribute("mensaje", "No se pudo actualizar el empleado");
+                }
+
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
                 requestDispatcher.forward(request, response);
             } catch (DatosNoCorrectosException | SQLException e) {
-                throw new RuntimeException(e);
+                request.setAttribute("error", "Error al actualizar: " + e.getMessage());
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/modificar.jsp");
+                requestDispatcher.forward(request, response);
             }
 
         }

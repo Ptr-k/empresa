@@ -14,7 +14,7 @@
         }
         div {
             border-radius: 10px;
-            box-shadow: black 10px 10px 10px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
             padding: 15px;
             margin: 10%;
             display: inline-block;
@@ -46,7 +46,6 @@
 </head>
 </head>
 <body>
-<h1>Listar Empleados</h1>
 <div>
 <table border="1">
     <tr>
@@ -66,7 +65,7 @@
         </tr>
     </c:forEach>
 </table>
-    <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/index.jsp'">
+    <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/'">
         Volver al Inicio
     </button>
 </div>
