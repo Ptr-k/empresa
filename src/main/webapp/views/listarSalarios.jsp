@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Mostrar Salarios</title>
     <style>
         body {
@@ -14,7 +15,7 @@
         }
         div {
             border-radius: 10px;
-            box-shadow: black 10px 10px 10px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
             padding: 15px;
             margin: 10%;
             display: inline-block;
@@ -37,8 +38,9 @@
             align-items: center;
         }
 
-        .volver {
-
+        #search {
+            margin-bottom: 10px;
+            height: 35px
         }
     </style>
 </head>
@@ -48,7 +50,7 @@
         <input type="hidden" name="accion" value="listarSalarios">
         <label for="dni">DNI:</label>
         <input type="text" id="dni" name="dni" required placeholder="Ingrese el DNI">
-        <button type="submit">Buscar Salario</button>
+        <button type="submit" id="search">Buscar Salario</button>
     </form>
 
     <c:if test="${not empty nominas}">
@@ -61,7 +63,7 @@
         <p style="color: red">No se encontró ningún empleado con el DNI: ${dni}</p>
     </c:if>
 
-    <button type="button" onclick="window.location.href='${pageContext.request.contextPath}/index.jsp'" class="volver">
+    <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/'">
         Volver al Inicio
     </button>
 </div>

@@ -60,18 +60,16 @@ public class EmpleadoDAO {
 
         try {
             connection.setAutoCommit(false);
-            query = "UPDATE empleados SET nombre=?, sexo=?, anyos=?, categoria=? WHERE id=?";
+            query = "UPDATE empleados SET nombre=?, sexo=?, anyos=?, categoria=? WHERE dni=?";
             statement = connection.prepareStatement(query);
 
             statement.setString(1, empleado.getNombre());
             statement.setString(2, String.valueOf(empleado.getSexo()));
             statement.setInt(3, empleado.getAnyos());
             statement.setInt(4, empleado.getCategoria());
+            statement.setString(5, empleado.getDni());
 
             estadoOperacion = statement.executeUpdate() > 0;
-            connection.commit();
-            statement.close();
-            connection.close();
 
         } catch (SQLException e) {
             connection.rollback();
@@ -90,6 +88,7 @@ public class EmpleadoDAO {
 
         try {
             statement = connection.prepareStatement(sql);
+            statement.setString(1, dni);
             resultado = statement.executeQuery();
 
             if (resultado.next()) {
