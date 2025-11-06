@@ -73,8 +73,8 @@
 
             <label for="sexo">Sexo:</label>
             <select id="sexo" name="sexo" required>
-                <option value="M" <c:if test="${empleado.sexo eq 'M'}">selected</c:if>>Masculino</option>
-                <option value="F" <c:if test="${empleado.sexo eq 'F'}">selected</c:if>>Femenino</option>
+                <option value="M" <c:if test="${empleado.sexo.toString() eq 'M'}">selected</c:if>>Masculino</option>
+                <option value="F" <c:if test="${empleado.sexo.toString() eq 'F'}">selected</c:if>>Femenino</option>
             </select>
 
             <label for="categoria">Categoría (1-10):</label>
