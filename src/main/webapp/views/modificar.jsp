@@ -44,9 +44,9 @@
 </head>
 <body>
 <div>
-    <!-- Se utiliza un formulario para conseguir los datos del empleado que se deseae
+    <!-- Se utiliza un formulario para conseguir los datos del empleado que se desea
      en este caso mediante el DNI. -->
-    <form action="empleados" method="get">
+    <form method="get">
         <input type="hidden" name="accion" value="buscarEmpleado">
         <label for="dni">DNI del Empleado:</label>
         <c:choose>
@@ -64,8 +64,8 @@
     <c:if test="${not empty empleado and not empty empleado.dni}">
         <hr style="border-color: #555; margin: 20px 0;">
         <h3>Datos del Empleado</h3>
-        <form action="empleados" method="post">
-            <input type="hidden" name="accion" value="editarEmpleados">
+        <form method="post" action="${pageContext.request.contextPath}/app">
+            <input type="hidden" name="accion" value="editarEmpleado">
             <input type="hidden" name="dni" value="${empleado.dni}">
 
             <label for="nombre">Nombre:</label>

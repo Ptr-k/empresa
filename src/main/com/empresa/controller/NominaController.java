@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(description = "unicamente se administran los dni", urlPatterns = {"/nominas"})
+// @WebServlet(description = "unicamente se administran los dni", urlPatterns = {"/nominas"})
+// Ahora que se utiliza @FrontController no es necesario el Servlet aquí.
 public class NominaController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

@@ -15,7 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(description = "se administran las peticiones para los empleados", urlPatterns = {"/empleados"})
+// @WebServlet(description = "se administran las peticiones para los empleados", urlPatterns = {"/empleados"})
+// Ahora que se utiliza @FrontController no es necesario el Servlet aquí.
 public class EmpleadoController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +27,7 @@ public class EmpleadoController extends HttpServlet {
         super();
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
