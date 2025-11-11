@@ -2,6 +2,11 @@ package com.empresa.model;
 
 import com.empresa.exception.DatosNoCorrectosException;
 
+/**
+ * Clase que representa a un empleado.
+ * <p>Contiene todos los constructores, getters
+ * y setters correspondientes.</p>
+ */
 public class Empleado {
 
     public String nombre;

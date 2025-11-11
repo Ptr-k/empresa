@@ -15,6 +15,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Se utiliza el patrón de diseño Front Controller para organizar
+ * las peticiones a los controladores, como {@link EmpleadoController} y {@link NominaController}.
+ * @see EmpleadoController
+ * @see NominaController
+ */
+
 @WebServlet("/app/*")
 public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
