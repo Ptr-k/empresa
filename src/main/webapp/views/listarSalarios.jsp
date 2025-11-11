@@ -47,9 +47,10 @@
 </head>
 <body>
 <div>
-    <form action="nominas" method="get" value="listarSalarios">
+    <form method="get" action="${pageContext.request.contextPath}/app">
         <input type="hidden" name="accion" value="listarSalarios">
         <label for="dni">DNI:</label>
+
         <input type="text" id="dni" name="dni" required placeholder="Ingrese el DNI">
         <button type="submit" id="search">Buscar Salario</button>
     </form>

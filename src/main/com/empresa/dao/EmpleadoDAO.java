@@ -11,17 +11,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO para el controlador {@link com.empresa.controller.EmpleadoController}.
+ */
 public class EmpleadoDAO {
     private Connection connection;
     private PreparedStatement statement;
     private boolean estadoOperacion;
 
-    // obtener conexion pool
+    /**
+     * Obtener conexion pool. Gracias a {@link Conexion}
+     * @return
+     * @throws SQLException
+     */
     private Connection obtenerConexion() throws SQLException {
         return Conexion.getConnection();
     }
 
-    // Obtener lista de empleados
+    /**
+     * Listar empleados.
+     * @return una lista con todos los empleados.
+     * @throws SQLException
+     */
     public List<Empleado> listarEmpleados() throws SQLException {
         ResultSet resultado = null;
         List<Empleado> listaEmpleados = new ArrayList<>();
@@ -52,7 +63,13 @@ public class EmpleadoDAO {
         return listaEmpleados;
     }
 
-    // editar los empleados
+    /**
+     * Modificar empleado, ingresando un empleado en concreto
+     * para poder modificar sus datos.
+     * @param empleado
+     * @return
+     * @throws SQLException
+     */
     public boolean editar(Empleado empleado) throws SQLException {
         String query = null;
         estadoOperacion = false;
@@ -79,7 +96,13 @@ public class EmpleadoDAO {
         return estadoOperacion;
     }
 
-    // Obtener empleado mediante un DNI
+    /**
+     * Buscar empleado mediante DNI.
+     * Devuelve un objeto Empleado si se encuentra, null en caso contrario.
+     * @param dni
+     * @return
+     * @throws SQLException
+     */
     public Empleado buscarEmpleado(String dni) throws SQLException {
         ResultSet resultado = null;
         connection = obtenerConexion();
